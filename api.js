@@ -13,16 +13,15 @@ app.get('/', function(req, res, next){
 
 app.get('/search/:prefix', function(req, res, next){
   var prefix = req.params.prefix;
-  console.log(req.params.prefix);
   var result = trie.autoComplete(prefix);
-  console.log("trie.autoComplete:", result);
   res.json(result);
 });
 
 app.post('/dictionary/', function(req, res, next){
-  console.log(req.body.words);
   var words = req.body.words;
   words.forEach(function (w){
+    //All in lower case
+    w = w.toLowerCase();
     trie.insert(w);
   });
   res.send(200);

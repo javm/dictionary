@@ -2,13 +2,13 @@ var superagent = require('superagent');
 var expect = require('expect.js');
 var port = '8000';
 before(function(done){
-  var words = ["hell", "hello"];
+  var words = ["hell", "hello", "Hello"];
   superagent.post('http://localhost:8000/dictionary/')
     .send({words: words})
     .end(function (err, res){
       if(err)
 	console.log(err);
-      console.log(res);
+      //console.log(res);
       done();
     });
 });
@@ -33,7 +33,6 @@ describe('dictionary-api', function(){
       .end(function (err, res){
 	if(err)
 	  console.log(err);
-	console.log(res);
 	expect(res.body.length).to.be.above(0);
 	expect(res.body.indexOf("hello")).to.be.above(-1);
 	expect(res.body.indexOf("hell")).to.be.above(-1);
@@ -48,7 +47,7 @@ describe('dictionary-api', function(){
       .end(function (err, res){
 	if(err)
 	  console.log(err);
-	console.log(res);
+	//console.log(res);
 	done();
       });
   });
